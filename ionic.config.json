@@ -1,0 +1,8 @@
+{
+  "name": "Ionic-wishList",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "51c617ef"
+}
