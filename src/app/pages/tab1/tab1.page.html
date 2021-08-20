@@ -1,9 +1,13 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="light">
     <ion-title> Slopes </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h1>Hello World</h1>
+  <ion-list>
+    <ion-item *ngFor="let list of wishesService.lists" detail>
+      <ion-label>{{ list.title }}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

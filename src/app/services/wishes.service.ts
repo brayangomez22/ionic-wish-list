@@ -6,9 +6,12 @@ import { List } from '../models/list.model';
 })
 export class WishesService {
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  Lists: List[] = [];
+  lists: List[] = [];
 
   constructor() {
-    console.log('initialized service');
+    const list1 = new List('Recolectar piedras del infinito');
+    const list2 = new List('Héroes a desaparecer');
+
+    this.lists.push(list1, list2);
   }
 }

@@ -7,5 +7,5 @@ import { WishesService } from 'src/app/services/wishes.service';
   styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page {
-  constructor(public wishes: WishesService) {}
+  constructor(public wishesService: WishesService) {}
 }
