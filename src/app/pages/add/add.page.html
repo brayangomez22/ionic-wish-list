@@ -20,7 +20,7 @@
   </ion-list>
 
   <ion-list>
-    <ion-list-header>
+    <ion-list-header *ngIf="list.items.length > 0">
       <ion-label>Tasks to do</ion-label>
     </ion-list-header>
 
