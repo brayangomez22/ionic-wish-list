@@ -10,7 +10,7 @@ import { WishesService } from 'src/app/services/wishes.service';
 })
 export class Tab1Page {
   constructor(
-    public wishesService: WishesService,
+    private wishesService: WishesService,
     private router: Router,
     public alertController: AlertController
   ) {}
@@ -42,13 +42,13 @@ export class Tab1Page {
               return;
             }
 
-            this.wishesService.createList(data.title);
+            const listId = this.wishesService.createList(data.title);
+            this.router.navigateByUrl(`/tabs/tab1/add/${listId}`);
           },
         },
       ],
     });
 
     alert.present();
-    //this.router.navigateByUrl('/tabs/tab1/add');
   }
 }

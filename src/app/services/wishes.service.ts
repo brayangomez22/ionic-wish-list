@@ -17,6 +17,14 @@ export class WishesService {
     this.lists.push(newList);
 
     this.saveStorage();
+
+    return newList.id;
+  }
+
+  getList(id: number | string) {
+    id = Number(id);
+
+    return this.lists.find((listData) => listData.id === id);
   }
 
   saveStorage() {
