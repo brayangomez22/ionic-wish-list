@@ -35,4 +35,20 @@ export class AddPage implements OnInit {
     this.nameItem = '';
     this.wishesService.saveStorage();
   }
+
+  changeCheck(item: ListItem) {
+    const slopes = this.list.items.filter(
+      (itemData) => !itemData.completed
+    ).length;
+
+    if (slopes === 0) {
+      this.list.finishedEn = new Date();
+      this.list.finished = true;
+    } else {
+      this.list.finishedEn = null;
+      this.list.finished = false;
+    }
+
+    this.wishesService.saveStorage();
+  }
 }
