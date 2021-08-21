@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonList } from '@ionic/angular';
 import { List } from 'src/app/models/list.model';
 import { WishesService } from 'src/app/services/wishes.service';
 
@@ -10,9 +10,14 @@ import { WishesService } from 'src/app/services/wishes.service';
   styleUrls: ['./lists.component.scss'],
 })
 export class ListsComponent implements OnInit {
+  @ViewChild(IonList) list: IonList;
   @Input() finished = true;
 
-  constructor(public wishesService: WishesService, private router: Router) {}
+  constructor(
+    public wishesService: WishesService,
+    private router: Router,
+    public alertController: AlertController
+  ) {}
 
   ngOnInit() {}
 
@@ -26,5 +31,42 @@ export class ListsComponent implements OnInit {
 
   deleteList(list: List) {
     this.wishesService.deleteList(list);
+  }
+
+  async editList(list: List) {
+    const alert = await this.alertController.create({
+      cssClass: 'alert',
+      header: 'Edit list',
+      inputs: [
+        {
+          name: 'title',
+          type: 'text',
+          value: `${list.title}`,
+          placeholder: 'List name',
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            this.list.closeSlidingItems();
+          },
+        },
+        {
+          text: 'Edit',
+          handler: (data) => {
+            if (data.title.length === 0) {
+              return;
+            }
+            list.title = data.title;
+            this.wishesService.saveStorage();
+            this.list.closeSlidingItems();
+          },
+        },
+      ],
+    });
+
+    alert.present();
   }
 }

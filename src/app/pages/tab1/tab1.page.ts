@@ -37,7 +37,6 @@ export class Tab1Page {
         {
           text: 'Create',
           handler: (data) => {
-            console.log(data);
             if (data.title.length === 0) {
               return;
             }

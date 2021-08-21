@@ -2,6 +2,12 @@
   <ion-item-sliding
     *ngFor="let list of wishesService.lists | filterCompleted: finished"
   >
+    <ion-item-options side="start">
+      <ion-item-option color="secondary" (click)="editList(list)">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+
     <ion-item detail (click)="listSelected(list)">
       <ion-label>{{ list.title }}</ion-label>
 
