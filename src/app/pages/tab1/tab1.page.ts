@@ -17,6 +17,7 @@ export class Tab1Page {
 
   async addList() {
     const alert = await this.alertController.create({
+      cssClass: 'alert',
       header: 'New list',
       inputs: [
         {
